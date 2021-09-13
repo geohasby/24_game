@@ -5,6 +5,7 @@ using namespace std;
 int angka[4];
 int urutanangka[4];
 char tanda[3], simbol[] = {'+','-','*','/'};
+bool check;
 
 int hitung(int x, int y, char z)
 {
@@ -26,20 +27,30 @@ int hitung(int x, int y, char z)
 
 void operation()
 {
-	if(hitung(hitung(hitung(urutanangka[0], urutanangka[1], tanda[0]), urutanangka[2], tanda[1]), urutanangka[3], tanda[2]) == 24.0)
+	if(hitung(hitung(hitung(urutanangka[0], urutanangka[1], tanda[0]), urutanangka[2], tanda[1]), urutanangka[3], tanda[2]) == 24.0){
+		check = true;
 		cout<<"(("<<urutanangka[0]<<tanda[0]<<urutanangka[1]<<')'<<tanda[1]<<urutanangka[2]<<')'<<tanda[2]<<urutanangka[3]<<" = 24"<<endl;
+	}
 	
-	if(hitung(hitung(urutanangka[0], urutanangka[1], tanda[0]), hitung(urutanangka[2], urutanangka[3], tanda[2]), tanda[1]) == 24.0)
+	if(hitung(hitung(urutanangka[0], urutanangka[1], tanda[0]), hitung(urutanangka[2], urutanangka[3], tanda[2]), tanda[1]) == 24.0){
+		check = true;
 		cout<<"("<<urutanangka[0]<<tanda[0]<<urutanangka[1]<<')'<<tanda[1]<<'('<<urutanangka[2]<<tanda[2]<<urutanangka[3]<<") = 24"<<endl;
+	}
 
-	if(hitung(hitung(urutanangka[0], hitung(urutanangka[1], urutanangka[2], tanda[1]), tanda[0]), urutanangka[3], tanda[2]) == 24.0)
+	if(hitung(hitung(urutanangka[0], hitung(urutanangka[1], urutanangka[2], tanda[1]), tanda[0]), urutanangka[3], tanda[2]) == 24.0){
+		check = true;
 		cout<<"("<<urutanangka[0]<<tanda[0]<<'('<<urutanangka[1]<<tanda[1]<<urutanangka[2]<<"))"<<tanda[2]<<urutanangka[3]<<" = 24"<<endl;
+	}
 
-	if(hitung(urutanangka[0], hitung(hitung(urutanangka[1], urutanangka[2], tanda[1]), urutanangka[3], tanda[2]), tanda[0]) == 24.0)
+	if(hitung(urutanangka[0], hitung(hitung(urutanangka[1], urutanangka[2], tanda[1]), urutanangka[3], tanda[2]), tanda[0]) == 24.0){
+		check = true;
 		cout<<urutanangka[0]<<tanda[0]<<"(("<<urutanangka[1]<<tanda[1]<<urutanangka[2]<<')'<<tanda[2]<<urutanangka[3]<<") = 24"<<endl;
+	}
 
-	if(hitung(urutanangka[0], hitung(urutanangka[1], hitung(urutanangka[2], urutanangka[3], tanda[2]), tanda[1]), tanda[0]) == 24.0)
+	if(hitung(urutanangka[0], hitung(urutanangka[1], hitung(urutanangka[2], urutanangka[3], tanda[2]), tanda[1]), tanda[0]) == 24.0){
+		check = true;
 		cout<<urutanangka[0]<<tanda[0]<<'('<<urutanangka[1]<<tanda[1]<<'('<<urutanangka[2]<<tanda[2]<<urutanangka[3]<<")) = 24"<<endl;
+	}
 }
 
 void random_urutan_angka()
@@ -85,15 +96,19 @@ int main()
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
 
-	cout<<"Masukkan 4 angka :"<<endl;
+	cout<<"Input 4 numbers :"<<endl;
 	
 	while(cin>>angka[0]>>angka[1]>>angka[2]>>angka[3])
 	{
+		check = false;
 		menentukan_tanda_operasi_hitung();
+		
+		if(check == false)
+			cout<<"No solution found"<<endl;
 		
 		cout<<endl;
 		
-		cout<<"Masukkan 4 angka :"<<endl;
+		cout<<"Input 4 numbers :"<<endl;
 	}
 }
 
